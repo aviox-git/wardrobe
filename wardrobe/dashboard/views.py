@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.views.generic import TemplateView,View
 from django.shortcuts import redirect,HttpResponseRedirect
+from django.contrib.auth import authenticate,login
 
 
 class IndexView(View):
@@ -15,6 +16,17 @@ class LoginView(TemplateView):
 
 	def get(self,request,*args, **kwargs):
 		return render(request,self.template_name,locals())
+
+	def post(request):
+		username = request.POST.get('username')
+		password = request.POST.get('password')
+
+		user = authenticate(username = username, password = password)
+		if user is not None:
+			login(request, user)
+			return HttpResponseRedirect('/')
+		else:
+			return render(request,self.template_name)
 
 class LinkedView(TemplateView):
 	template_name='linked.html'
