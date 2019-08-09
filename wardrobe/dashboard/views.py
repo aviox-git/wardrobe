@@ -1,9 +1,10 @@
 from __future__ import unicode_literals
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,View
 from django.shortcuts import redirect,HttpResponseRedirect
 
-class IndexView(TemplateView):
+
+class IndexView(View):
 	template_name='index.html'
 
 	def get(self,request,*args, **kwargs):
