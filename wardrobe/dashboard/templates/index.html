@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-main-section">
+        <div class="box-header box-main-header">
+          <h3 class="box-title">AUTOMATIONS</h3>
+          <div class="box-title-button">
+            <a href="#">Add automations</a>
+          </div>
+        </div>
+        <div class="box-body box-main-body">
+          <table id="example2" class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Automation Name</th>
+                <th>Geography</th>
+                <th>Seniority level</th>
+                <th>Year at company</th>
+                <th>function</th>
+                <th>Play</th>
+                <th>Pause</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Automation Name (frequency)</td>
+                <td>x</td>
+                <td>y</td>
+                <td>z</td>
+                <td>a</td>
+                <td><a class="play" href="#">Play</a></td>
+                <td><a class="pause" href="#">Pause</a></td>
+                <td><a class="edit" href="#">Edit</a></td>
+                <td><a class="delete" href="#">delete</a></td>
+              </tr>
+              <tr>
+                <td>VP sales(Every 3 weeks)</td>
+                <td>Montreal</td>
+                <td>VP</td>
+                <td>1 to 2 years</td>
+                <td>Sales</td>
+                <td><a class="play" href="#">Play</a></td>
+                <td><a class="pause" href="#">Pause</a></td>
+                <td><a class="edit" href="#">Edit</a></td>
+                <td><a class="delete" href="#">delete</a></td>
+              </tr>
+              <tr>
+                <td>VP sales ver 2(Every 1 week)</td>
+                <td>Montreal</td>
+                <td>VP</td>
+                <td>2 to 4 years</td>
+                <td>Sales</td>
+                <td><a class="play" href="#">Play</a></td>
+                <td><a class="pause" href="#">Pause</a></td>
+                <td><a class="edit" href="#">Edit</a></td>
+                <td><a class="delete" href="#">delete</a></td>
+                </tr>
+                <tr>
+                  <td>Director sales(Every 1 week)</td>
+                  <td>Montreal</td>
+                  <td>Director</td>
+                  <td>3 to 5 years</td>
+                  <td>Sales</td>
+                  <td><a class="play" href="#">Play</a></td>
+                  <td><a class="pause" href="#">Pause</a></td>
+                  <td><a class="edit" href="#">Edit</a></td>
+                  <td><a class="delete" href="#">delete</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

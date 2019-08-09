@@ -4,6 +4,4 @@
 media/
 api/migrations/*
 db.sqlite3
-dashboard/migrations/*
-merchant_dashboard/migrations/*
 migrations/*
