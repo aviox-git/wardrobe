@@ -3,13 +3,32 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,View
 from django.shortcuts import redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User
 
 
 class IndexView(View):
 	template_name='index.html'
 
 	def get(self,request,*args, **kwargs):
+		user=User.objects.all()
 		return render(request,self.template_name,locals())
+
+	def post(self,request):
+		username=request.POST.get('username')
+		print(request.POST)
+		password=request.POST.get('createpass')
+		first_name=request.POST.get('fname')
+		last_name=request.POST.get('lname')
+		email_id=request.POST.get('emailid')
+		user=User.objects.create(
+			username=username,
+			email=email_id,
+			)
+		user.set_password(password)
+		user.first_name=first_name
+		user.last_name=last_name
+		user.save()
+		return HttpResponseRedirect('/dashboard')
 
 class LoginView(TemplateView):
 	template_name='login.html'
@@ -29,16 +48,3 @@ class LoginView(TemplateView):
 		else:
 			return render(request,self.template_name,locals())
 		
-
-class UserView(TemplateView):
-	template_name='users.html'
-
-	def get(self,request,*args,**kwargs):
-		return render(request,self.template_name,locals())
-
-class Adduser(TemplateView):
-	template_name='add_user.html'
-
-	def get(self,request,*args,**kwargs):
-		return render(request,self.template_name,locals())
-
