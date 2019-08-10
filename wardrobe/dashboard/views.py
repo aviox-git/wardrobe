@@ -17,40 +17,28 @@ class LoginView(TemplateView):
 	def get(self,request,*args, **kwargs):
 		return render(request,self.template_name,locals())
 
-	def post(request):
-		username = request.POST.get('username')
-		password = request.POST.get('password')
+	def post(self,request):
+		username=request.POST.get('user')
+		password=request.POST.get('passwd')
+		user=authenticate(username=username, password=password)
+		print(user)
+		if user:
+			login(request,user)
+			return HttpResponseRedirect('/dashboard')
 
-		user = authenticate(username = username, password = password)
-		if user is not None:
-			login(request, user)
-			return HttpResponseRedirect('/')
 		else:
-			return render(request,self.template_name)
+			return render(request,self.template_name,locals())
+		
 
-class LinkedView(TemplateView):
-	template_name='linked.html'
+class UserView(TemplateView):
+	template_name='users.html'
 
-	def get(self,request,*args, **kwargs):
+	def get(self,request,*args,**kwargs):
 		return render(request,self.template_name,locals())
 
+class Adduser(TemplateView):
+	template_name='add_user.html'
 
-class AddAutomation(TemplateView):
-	template_name='add_automation.html'
-
-	def get(self,request,*args, **kwargs):
+	def get(self,request,*args,**kwargs):
 		return render(request,self.template_name,locals())
 
-
-class PendingApprovalList(TemplateView):
-	template_name='pending_approval_list.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())
-
-
-class Database(TemplateView):
-	template_name='database.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())

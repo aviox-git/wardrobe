@@ -1,75 +1,52 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
       <div class="box box-main-section">
         <div class="box-header box-main-header">
-          <h3 class="box-title">AUTOMATIONS</h3>
+          <h3 class="box-title">Users</h3>
           <div class="box-title-button">
-            <a href="#">Add automations</a>
+            <div class="box-body">
+              <button type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#modal-default">
+                New User
+              </button>
+              </div>
           </div>
         </div>
         <div class="box-body box-main-body">
           <table id="example2" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th>Automation Name</th>
-                <th>Geography</th>
-                <th>Seniority level</th>
-                <th>Year at company</th>
-                <th>function</th>
-                <th>Play</th>
-                <th>Pause</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Names</th>
+                <th>Email</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Automation Name (frequency)</td>
-                <td>x</td>
-                <td>y</td>
-                <td>z</td>
-                <td>a</td>
-                <td><a class="play" href="#">Play</a></td>
-                <td><a class="pause" href="#">Pause</a></td>
-                <td><a class="edit" href="#">Edit</a></td>
-                <td><a class="delete" href="#">delete</a></td>
-              </tr>
-              <tr>
-                <td>VP sales(Every 3 weeks)</td>
-                <td>Montreal</td>
-                <td>VP</td>
-                <td>1 to 2 years</td>
-                <td>Sales</td>
-                <td><a class="play" href="#">Play</a></td>
-                <td><a class="pause" href="#">Pause</a></td>
-                <td><a class="edit" href="#">Edit</a></td>
-                <td><a class="delete" href="#">delete</a></td>
-              </tr>
-              <tr>
-                <td>VP sales ver 2(Every 1 week)</td>
-                <td>Montreal</td>
-                <td>VP</td>
-                <td>2 to 4 years</td>
-                <td>Sales</td>
-                <td><a class="play" href="#">Play</a></td>
-                <td><a class="pause" href="#">Pause</a></td>
-                <td><a class="edit" href="#">Edit</a></td>
-                <td><a class="delete" href="#">delete</a></td>
-                </tr>
-                <tr>
-                  <td>Director sales(Every 1 week)</td>
-                  <td>Montreal</td>
-                  <td>Director</td>
-                  <td>3 to 5 years</td>
-                  <td>Sales</td>
-                  <td><a class="play" href="#">Play</a></td>
-                  <td><a class="pause" href="#">Pause</a></td>
-                  <td><a class="edit" href="#">Edit</a></td>
-                  <td><a class="delete" href="#">delete</a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
                 </tr>
               </tbody>
             </table>
@@ -79,4 +56,40 @@
     </div>
   </div>
 </section>
+
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Create User</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+                     <label for="username"> Username</label>
+                     <input type="text" name="username" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="fullname"> Full Name</label>
+                     <input type="text" name="fname" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="email"> Email</label>
+                     <input type="email" name="emailid" class="form-control">
+                  </div>
+                  <div class="form-group">
+                     <label for="password"> Password</label>
+                     <input type="password" name="password" class="form-control">
+                  </div>
+                  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
