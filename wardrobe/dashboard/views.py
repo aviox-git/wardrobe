@@ -3,13 +3,32 @@ from django.shortcuts import render
 from django.views.generic import TemplateView,View
 from django.shortcuts import redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate,login
+from django.contrib.auth.models import User
 
 
 class IndexView(View):
 	template_name='index.html'
 
 	def get(self,request,*args, **kwargs):
+		user=User.objects.all()
 		return render(request,self.template_name,locals())
+
+	def post(self,request):
+		username=request.POST.get('username')
+		print(request.POST)
+		password=request.POST.get('createpass')
+		first_name=request.POST.get('fname')
+		last_name=request.POST.get('lname')
+		email_id=request.POST.get('emailid')
+		user=User.objects.create(
+			username=username,
+			email=email_id,
+			)
+		user.set_password(password)
+		user.first_name=first_name
+		user.last_name=last_name
+		user.save()
+		return HttpResponseRedirect('/dashboard')
 
 class LoginView(TemplateView):
 	template_name='login.html'
@@ -17,40 +36,15 @@ class LoginView(TemplateView):
 	def get(self,request,*args, **kwargs):
 		return render(request,self.template_name,locals())
 
-	def post(request):
-		username = request.POST.get('username')
-		password = request.POST.get('password')
+	def post(self,request):
+		username=request.POST.get('user')
+		password=request.POST.get('passwd')
+		user=authenticate(username=username, password=password)
+		print(user)
+		if user:
+			login(request,user)
+			return HttpResponseRedirect('/dashboard')
 
-		user = authenticate(username = username, password = password)
-		if user is not None:
-			login(request, user)
-			return HttpResponseRedirect('/')
 		else:
-			return render(request,self.template_name)
-
-class LinkedView(TemplateView):
-	template_name='linked.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())
-
-
-class AddAutomation(TemplateView):
-	template_name='add_automation.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())
-
-
-class PendingApprovalList(TemplateView):
-	template_name='pending_approval_list.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())
-
-
-class Database(TemplateView):
-	template_name='database.html'
-
-	def get(self,request,*args, **kwargs):
-		return render(request,self.template_name,locals())
+			return render(request,self.template_name,locals())
+		

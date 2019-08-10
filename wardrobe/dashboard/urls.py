@@ -5,11 +5,6 @@ from .views import *
 
 urlpatterns = [
 	
-	path('login',LoginView.as_view(),name='login'),
-	path('',IndexView.as_view(), name='index'),
-    
-    path('linked',LinkedView.as_view(), name='linked'),
-    path('add-automation',AddAutomation.as_view(), name='add_automation'),
-    path('pending-approval-list',PendingApprovalList.as_view(),name='pending_approval_list'),
-    path('database',Database.as_view(),name='database')
+	path('',LoginView.as_view(),name='login'),
+	path('dashboard',IndexView.as_view(), name='index'),
 ]
