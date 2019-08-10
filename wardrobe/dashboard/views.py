@@ -4,12 +4,13 @@ from django.views.generic import TemplateView,View
 from django.shortcuts import redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
+from api.models import *
 
 
 class IndexView(View):
 	template_name='index.html'
 
-	def get(self,request,*args, **kwargs):
+	def get(self, request, *args, **kwargs):
 		user=User.objects.all()
 		return render(request,self.template_name,locals())
 
@@ -28,6 +29,14 @@ class IndexView(View):
 		user.first_name=first_name
 		user.last_name=last_name
 		user.save()
+		user_obj=UserModel(
+			user=user,
+			phone=request.POST.get('pnumber'),
+			image=request.FILES.get('img'),
+			dob=request.POST.get('dob'),
+			gender=request.POST.get('gender')
+			)
+		user_obj.save()
 		return HttpResponseRedirect('/dashboard')
 
 class LoginView(TemplateView):
