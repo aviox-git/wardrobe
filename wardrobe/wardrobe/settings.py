@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'api',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,24 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'wardrobe.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+
+AUTHENTICATION_BACKENDS = ( 
+                            "django.contrib.auth.backends.ModelBackend",
+                            'rest_framework.authentication.SessionAuthentication',
+                            'rest_framework.authentication.TokenAuthentication', 
+                            )
 
 TEMPLATES = [
     {
@@ -120,9 +140,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
-  
+  os.path.join(BASE_DIR, 'static/'), 
 )
-
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, '../static/')
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
