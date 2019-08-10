@@ -14,13 +14,19 @@
   <link rel="stylesheet" href="{% static 'plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css' %}">
   <link rel="stylesheet" href="{% static 'dist/css/skins/_all-skins.min.css' %}">
   <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic' %}">
+   <!-- Toastr -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" type="text/css" media="screen" title="no title" charset="utf-8">
 </head>
+<style type="text/css">
+  .dataTables_filter {
+      display: block;
+  }
+</style>
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
     {% include 'header.html' %}
     {% include 'sidebar.html' %}
     <div class="content-wrapper">
-      {% include 'boxes.html' %}
       {% block content %}
       {% endblock %}
     </div>
@@ -33,17 +39,31 @@
 <script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
 <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
 <script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+<!-- Toastr -->
+<script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script type="text/javascript">
+
+{% if messages %}
+{% for message in messages %}
+toastr.{{message.tags}}("{{ message }}")
+{% endfor %}
+{% endif %}
+
+</script>
 <script>
   $(function () {
-    $('#example2').DataTable({
+    $('.datatable').DataTable({
       'paging'      : true,
-      'lengthChange': false,
+      'lengthChange': true,
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true
     })
-  })
+  });
 </script>
+{% block javascript %}
+{% endblock %}
 </body>
 </html>
