@@ -26,11 +26,6 @@
           <button type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#modal-default">
                 New User
               </button>
-          <!-- <div class="box-title-button">
-            <div class="box-body">
-              
-            </div>
-          </div> -->
         </div>
         <div class="box-body box-main-body">
           <table class="table table-bordered table-striped datatable">
@@ -60,16 +55,6 @@
                 </tr>
                 {% endfor %}
               </tbody>
-              <tfoot>
-                <tr>
-                <th>Username</th>
-                <th>First Name</th>
-                <th>Last Names</th>
-                <th>Email</th>
-                <th>Active</th>
-                <th>Edit | Delete</th>
-              </tr>
-              </tfoot>
             </table>
           </div>
         </div>
@@ -114,6 +99,7 @@
                   <label for="dob">Date Of Birth</label>
                   <input type="text" name="dob" class="form-control date-picker" placeholder="YYYY/MM/DD" required>
                 </div>
+                
                 <div class="form-group">
                   <label>gender</label>
                   <select required name="gender" class="form-control">

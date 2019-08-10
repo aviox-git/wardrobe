@@ -30,4 +30,4 @@ class UserModel(models.Model):
 	gender = models.CharField(max_length = 1, choices = Gender)
 
 	def __str__(self):
-		return self.user.username + " : " + self.user.gender
+		return self.user.username + " : " + self.gender

@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="{% static 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic' %}">
    <!-- Toastr -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" type="text/css" media="screen" title="no title" charset="utf-8">
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 </head>
 <style type="text/css">
   .dataTables_filter {
@@ -37,10 +38,12 @@
 <script src="{% static 'bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'bower_components/datatables.net/js/jquery.dataTables.min.js' %}"></script>
 <script src="{% static 'bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js' %}"></script>
-<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
-<script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
+
+
 <!-- Toastr -->
 <script type="text/javascript" charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+<script src="{% static 'dist/js/pages/dashboard.js' %}"></script>
 
 <script type="text/javascript">
 
@@ -63,6 +66,7 @@ toastr.{{message.tags}}("{{ message }}")
     })
   });
 </script>
+
 <script type="text/javascript">
   $(function() {
       $(".date-picker").datepicker({ dateFormat: "yy-mm-dd" });
