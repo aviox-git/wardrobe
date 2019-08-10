@@ -23,16 +23,17 @@
       <div class="box box-main-section">
         <div class="box-header box-main-header">
           <h3 class="box-title">Users</h3>
-          <div class="box-title-button">
-            <div class="box-body">
-              <button type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#modal-default">
+          <button type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#modal-default">
                 New User
               </button>
-              </div>
-          </div>
+          <!-- <div class="box-title-button">
+            <div class="box-body">
+              
+            </div>
+          </div> -->
         </div>
         <div class="box-body box-main-body">
-          <table id="example2" class="table table-bordered table-hover">
+          <table class="table table-bordered table-striped datatable">
             <thead>
               <tr>
                 <th>Username</th>
@@ -59,6 +60,16 @@
                 </tr>
                 {% endfor %}
               </tbody>
+              <tfoot>
+                <tr>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Names</th>
+                <th>Email</th>
+                <th>Active</th>
+                <th>Edit | Delete</th>
+              </tr>
+              </tfoot>
             </table>
           </div>
         </div>
@@ -67,7 +78,7 @@
   </div>
 </section>
 
-<form action="" method="POST">
+<form id="userform" method="POST">
   {% csrf_token %}
   <div class="modal fade" id="modal-default">
   <div class="modal-dialog">
@@ -80,11 +91,11 @@
       <div class="modal-body">
         <div class="form-group">
                      <label for="username"> Username</label>
-                     <input type="text" name="username" class="form-control">
+                     <input type="text" name="username" class="form-control" required>
                   </div>
                   <div class="form-group">
                      <label for="firstname"> First Name</label>
-                     <input type="text" name="fname" class="form-control">
+                     <input type="text" name="fname" class="form-control" required>
                   </div>
                   <div class="form-group">
                      <label for="lastname"> Last Name</label>
@@ -119,12 +130,12 @@
 
                   <div class="form-group">
                      <label for="password"> Create Password</label>
-                     <input type="password" name="createpass" class="form-control">
+                     <input type="password" name="createpass" class="form-control" required>
                   </div>
 
                   <div class="form-group">
                      <label for="confirmpassword"> Confirm Password</label>
-                     <input type="password" name="confirmpass" class="form-control">
+                     <input type="password" name="confirmpass" class="form-control" required>
                   </div>
                   
       </div>
@@ -196,4 +207,35 @@
           </div>
         </div>
 
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+  $('#userform').on('submit', function() {
+
+    var error = false;
+    var password = $("input[name='createpass']").val();
+    var confirm = $("input[name='confirmpass']").val();
+    var username = $("input[name='username']").val();
+
+    var users = {{user_list | safe}};
+    for (let user of users){
+      if (user == username){
+        toastr.error("Username not available");
+        error = true;
+      }
+    }
+
+    if (password !== confirm){
+      toastr.error('password and confirm password didn\'t matched');
+      error = true;
+    }
+
+    if (error == true){
+      return false;
+    }
+
+    return true;
+  });
+</script>
 {% endblock %}

@@ -5,6 +5,7 @@ from django.shortcuts import redirect,HttpResponseRedirect
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
 from api.models import *
+import json
 
 
 class IndexView(View):
@@ -12,11 +13,11 @@ class IndexView(View):
 
 	def get(self, request, *args, **kwargs):
 		user=User.objects.all()
+		user_list = json.dumps([u.username for u in user])
 		return render(request,self.template_name,locals())
 
 	def post(self,request):
 		username=request.POST.get('username')
-		print(request.POST)
 		password=request.POST.get('createpass')
 		first_name=request.POST.get('fname')
 		last_name=request.POST.get('lname')
