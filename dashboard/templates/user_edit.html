@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-main-section">
+        <div class="box-header box-main-header">
+          <h3 class="box-title">Users Details</h3>
+          <button type="button" class="btn btn-default btn-success" onclick="change1245()">
+                Edit User
+              </button>
+        </div>
+        <div class="box-body box-main-body">
+          <form method="post" action="{% url 'user_edit' user_data.id %}">
+          	{% csrf_token %}
+          	
+          	<div class="form-group">
+                     <label for="first_name">First Name</label>
+                     <input type="text" name="fname" class="form-control" value="{{user_data.first_name}}" required disabled>
+                 </div>
+                 <div class="form-group">
+                     <label for="last_name">Last Name</label>
+                     <input type="text" name="lname" class="form-control" value="{{user_data.last_name}}" required disabled>
+                 </div>
+                 <div class="form-group">
+                     <label for="phone">Mobile Number</label>
+                     <input type="number" name="pnum" class="form-control" value="{{user_data.usermodel.phone}}" required disabled>
+                 </div>
+                 <img src="{{user_data.usermodel.image.url}}" height="100px" width="100px">
+
+                 <div class="form-group">
+                    <label for="image">Change Image</label>
+                     <input type="file" name="img" value=""class="form-control" disabled>
+                  </div>
+                <div class="form-group">
+                     <label for="email">Email</label>
+                     <input type="email" name="email" class="form-control" value="{{user_data.email}}" required disabled>
+                 </div>
+                 <div class="form-group">
+                  <label for="dob">Date Of Birth</label>
+                  <input type="text" name="dob" class="form-control date-picker" value="" required disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>gender</label>
+                  <select required name="gender" class="form-control" disabled>
+                    <option {% if user_data.usermodel.gender == 'M'  %}selected {% endif %} value="M">Male</option>
+                    <option {% if user_data.usermodel.gender == 'F'  %}selected {% endif %} value="F">Female</option>
+                    <option {% if user_data.usermodel.gender == 'O'  %}selected {% endif %} value="O">Other</option>
+                  </select></div>
+
+                 <div class="form-group">
+                     <input type="submit" class="form-control btn btn-success" >
+                 </div>
+
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+	function change1245(){
+		console.log("meenu")
+		$('input,select').prop('disabled',false)
+	}
+</script>
+{% endblock %}
+
+
+
