@@ -31,3 +31,10 @@ class UserModel(models.Model):
 
 	def __str__(self):
 		return self.user.username + " : " + self.gender
+
+class CategoryModel(models.Model):
+    user = models.ForeignKey(User, on_delete = models.CASCADE)
+    name = models.CharField(max_length = 100)
+
+    def __str__(self):
+        return self.user.username + " : " + self.name
