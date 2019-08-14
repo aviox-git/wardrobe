@@ -23,6 +23,8 @@
       display: block;
   }
 </style>
+{% block head %}
+{% endblock %}
 <body class="hold-transition skin-blue sidebar-mini">
   <div class="wrapper">
     {% include 'header.html' %}
@@ -69,7 +71,7 @@ toastr.{{message.tags}}("{{ message }}")
 
 <script type="text/javascript">
   $(function() {
-      $(".date-picker").datepicker({ dateFormat: "yy-mm-dd" });
+      $(".date-picker").datepicker({ dateFormat: "dd-mm-yy" });
   });
 
 </script> 

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% block head %}
+
+{% endblock %}
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-main-section">
+        <div class="box-header box-main-header">
+          <h3 class="box-title">Users Details</h3>
+          <button type="button" class="btn btn-default btn-success" onclick="change1245()">
+                Edit User
+              </button>
+        </div>
+        <div class="box-body box-main-body">
+          <form method="POST" action="{% url 'user_edit' user_data.id %}" enctype="multipart/form-data">
+          	{% csrf_token %}
+          	<center><div class="form-group">
+                 	<img src="{{user_data.usermodel.image.url}}" height="150px" width="150px">
+                 </div></center><br>
+          	
+          	<div class="form-group ">
+                     <label for="first_name" class="col-sm-4 control-label">First Name</label>
+                 </div>
+                 <div class="form-group col-sm-8">
+                 	<input type="text" name="fname" class="form-control " value="{{user_data.first_name}}" required disabled>
+                 </div>
+                 <div class="form-group">
+                     <label for="last_name" class="col-sm-4 control-label">Last Name</label>
+                 </div>
+                 <div class="form-group col-sm-8">
+                 	<input type="text" name="lname" class="form-control" value="{{user_data.last_name}}"  disabled>
+                 </div>
+                 <div class="form-group">
+                     <label for="phone"  class="col-sm-4 control-label">Mobile Number</label>
+                 </div>
+                 <div class="form-group col-sm-8">
+                 	<input type="text" pattern="[4-9]{1}[0-9]{9}"  name="pnum" class="form-control" value="{{user_data.usermodel.phone}}"  title="number should be between 10 and 12 digits" disabled >
+                 </div>
+
+                 
+
+                 <div class="form-group">
+                    <label for="image" class="col-sm-4 control-label ">Change Image</label>
+                  </div>
+                  <div class="form-group col-sm-8">
+                  	<input type="file" name="img" value=""class="form-control"  disabled>
+                  </div>
+                <div class="form-group">
+                     <label for="email" class="col-sm-4 control-label">Email</label>
+                 </div>
+                 <div class="form-group col-sm-8">
+                 	<input type="email" name="email" class="form-control" value="{{user_data.email}}" required disabled>
+                 </div>
+                 <div class="form-group">
+                  <label for="dob" class="col-sm-4 control-label">Date Of Birth</label>
+                </div>
+                <div class="form-group col-sm-8"><input type="text" name="dob" class="form-control date-picker" value="{{date}}" required disabled ></div>
+
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">gender</label>
+                  </div>
+                  <div class="form-group col-sm-8"><select required name="gender" class="form-control" disabled>
+                    <option {% if user_data.usermodel.gender == 'M'  %}selected {% endif %} value="M">Male</option>
+                    <option {% if user_data.usermodel.gender == 'F'  %}selected {% endif %} value="F">Female</option>
+                    <option {% if user_data.usermodel.gender == 'O'  %}selected {% endif %} value="O">Other</option>
+                  </select></div>
+
+                 <center><div class="form-group">
+                     <input type="submit" class=" btn btn-success  " disabled>
+                     <a href="{% url 'index' %}"><button type='button' class=" btn btn-success ">Cancel</button> </a>
+                 </div>
+</center>
+          </form>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script type="text/javascript">
+	function change1245(){
+		$('input,select').prop('disabled',false)
+	}
+</script>
+{% endblock %}
+
+
+

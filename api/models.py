@@ -24,8 +24,8 @@ class AppToken(models.Model):
 Gender = (("M", "Male"),("F", "Female"),("O","Other"))
 class UserModel(models.Model):
 	user = models.OneToOneField(User, on_delete = models.CASCADE)
-	phone = models.PositiveIntegerField()
-	image = models.ImageField(upload_to = 'profile')
+	phone = models.PositiveIntegerField(blank=True,null=True,default=None)
+	image = models.ImageField(upload_to = 'profile',blank=True,null=True)
 	dob = models.DateField(verbose_name='Date of Birth')
 	gender = models.CharField(max_length = 1, choices = Gender)
 
